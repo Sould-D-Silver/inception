@@ -8,10 +8,12 @@ RUN = docker compose run --rm
 TEST = $(RUN) test
 
 build:
+	mkdir -p /home/sjoao/data/mariadb
+	mkdir -p /home/sjoao/data/wordpress
 	$(BUILD)
 
 clean:
-	docker compose down --volumes --remove-orphans
+	docker compose -f srcs/docker-compose.yml  down ##--volumes --remove-orphans
 
 fclean: clean
 	docker system prune -f

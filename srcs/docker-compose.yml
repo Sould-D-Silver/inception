@@ -1,23 +1,21 @@
 services:
   mariadb:
-    build: ./srcs/requirements/mariadb
+    build: ./requirements/mariadb
     container_name: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: 
-      MYSQL_DATABASE: 
-      MYSQL_USER: 
-      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE:
+      MYSQL_USER:
+      MYSQL_PASSWORD:
     ports:
       - "3306:3306"
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - mariadb:/var/lib/mysql
 
-
-  volumes:
-    mariadb_data:
-      driver: local
+volumes:
+  mariadb:
+    driver: local
     driver_opts:
       type: none
-      device: home/sjoao/data/mariadb_data
+      device: /home/sjoao/data/mariadb
       o: bind
-      
