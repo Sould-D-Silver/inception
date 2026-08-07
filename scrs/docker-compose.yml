@@ -15,7 +15,7 @@ services:
 
   volumes:
     mariadb_data:
-    driver: local
+      driver: local
     driver_opts:
       type: none
       device: home/sjoao/data/mariadb_data
