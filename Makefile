@@ -1,6 +1,7 @@
 
 
 
+
 BUILD = docker compose -f srcs/docker-compose.yml up --build -d 
 
 RUN = docker compose run --rm
