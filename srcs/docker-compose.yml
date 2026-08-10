@@ -12,6 +12,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
 
+
 volumes:
   mariadb:
     driver: local
