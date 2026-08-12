@@ -15,4 +15,4 @@ RUN chmod +x /bin/first.sh
 
 RUN echo "dentro do container"
 
-CMD ["/bin/first.sh"]
+ENTRYPOINT ["/bin/first.sh"]

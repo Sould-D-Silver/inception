@@ -12,9 +12,12 @@ build:
 
 
 clean:
-	docker compose -f srcs/docker-compose.yml  down ##--volumes --remove-orphans
+	docker compose -f srcs/docker-compose.yml  down --volumes #--remove-orphans
 
-fclean: clean
+remove:
+	sudo rm -rf /home/sjoao/data/mariadb /home/sjoao/data/wordpress
+
+fclean: clean remove
 	docker system prune -f
 
 re: fclean build
