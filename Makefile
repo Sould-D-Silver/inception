@@ -22,3 +22,4 @@ fclean: clean
 re: fclean build
 
 #titan ferra cai por terra
+# nao sao deuses reles seres
