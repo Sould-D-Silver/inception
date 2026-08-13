@@ -1,5 +1,5 @@
 
-BUILD = docker compose -f srcs/docker-compose.yml  up   --build #-d
+BUILD = docker compose -f srcs/docker-compose.yml  up   --build -d
 
 RUN = docker compose -f srcs/docker-compose.yml  run --rm
 
@@ -9,11 +9,12 @@ build_and_up_with_detach: make_dir
 	$(BUILD)
 
 make_dir:
-	mkdir -p /home/sjoao/data/mariadb
-	mkdir -p /home/sjoao/data/wordpress
+	mkdir -p /home/sjoao/data/mariadb_data
+	mkdir -p /home/sjoao/data/wordpress_data
 
 up:
 	docker compose -f srcs/docker-compose.yml  up -d
+
 down:
 	docker compose -f srcs/docker-compose.yml  down
 
@@ -40,7 +41,7 @@ clean:
 	docker compose -f srcs/docker-compose.yml  down --remove-orphans --volumes 
 
 remove:
-	sudo rm -rf /home/sjoao/data/mariadb/* /home/sjoao/data/wordpress/*
+	sudo rm -rf /home/sjoao/data
 
 fclean: clean remove
 	docker system prune -f
