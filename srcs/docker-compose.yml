@@ -1,5 +1,10 @@
+networks:
+  inception:
+    driver: bridge
+
 services:
   mariadb:
+    image: mariadb:inception
     build: ./requirements/mariadb
     container_name: mariadb
     env_file:
@@ -7,13 +12,35 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mariadb:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
 
+  wordpress:
+    image: wordpress:inception
+    build: ./requirements/wordpress
+    container_name: wordpress
+    env_file:
+      - .env
+    ports:
+      - "5555:80"
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
 
 volumes:
-  mariadb:
+  mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/sjoao/data/mariadb
+      device: /home/sjoao/data/mariadb_data
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/sjoao/data/wordpress_data
       o: bind
