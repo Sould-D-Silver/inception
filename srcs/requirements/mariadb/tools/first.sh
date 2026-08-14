@@ -12,6 +12,7 @@ else
 fi
 
 envsubst < /usr/local/bin/db_init.sql > /usr/local/bin/db_init_processed.sql
+
 echo "arquivo de inicialização processado"
 
 echo "iniciando o servidor"

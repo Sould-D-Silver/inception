@@ -24,14 +24,14 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
 
     wait_for_db
 
-     wp config create \
+    wp config create \
         --dbname="$MYSQL_DATABASE" \
         --dbuser="$MYSQL_USER" \
         --dbpass="$MYSQL_PASSWORD" \
         --dbhost="$DB_HOST" \
         --allow-root
 
-    echo "dps do create"
+    echo "created wp-config.php"
 
     if [ ! -f "/var/www/html/wp-config.php" ]; then
         echo "Erro: wp-config.php não foi criado corretamente."
@@ -46,16 +46,15 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --admin_email="$WP_ADMIN_EMAIL" \
         --allow-root
 
-    echo "dps do core install"
-
     wp user create "$WP_USER" "$WP_USER_EMAIL" \
         --role=author \
         --user_pass="$WP_USER_PASSWD" \
         --allow-root
 
 else
-    echo "wordpress já está baixado e cconfigurado" 
+    echo "wordpress já está baixado e configurado" 
 fi
 
 echo "iniciando o servidor"
+
 exec php-fpm84 -F
