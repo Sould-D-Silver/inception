@@ -38,11 +38,11 @@ RUN curl -fsSL -o /usr/local/bin/wp \
 
 COPY ./conf/limit.ini /etc/php84/conf.d/99-wp-cli.ini
 
-COPY ./tools/inicial.sh /usr/local/bin/inicial.sh
-RUN chmod +x /usr/local/bin/inicial.sh
+COPY ./tools/wordpress.sh /usr/local/bin/wordpress.sh
+RUN chmod +x /usr/local/bin/wordpress.sh
 
 WORKDIR /var/www/html
 
 EXPOSE 9000
 
-ENTRYPOINT ["/usr/local/bin/inicial.sh"]
+ENTRYPOINT ["/usr/local/bin/wordpress.sh"]
