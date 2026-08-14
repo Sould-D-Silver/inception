@@ -7,6 +7,9 @@ services:
     image: mariadb:inception
     build: ./requirements/mariadb
     container_name: mariadb
+    secrets:
+      - db_root_pass
+      - db_user_pass
     env_file:
       - .env
     volumes:
@@ -18,6 +21,10 @@ services:
     image: wordpress:inception
     build: ./requirements/wordpress
     container_name: wordpress
+    secrets:
+      - db_user_pass
+      - wp_admin_pass
+      - wp_user_pass
     env_file:
       - .env
     depends_on:
@@ -53,3 +60,13 @@ volumes:
       type: none
       device: /home/sjoao/data/wordpress_data
       o: bind
+
+secrets:
+  db_root_pass:
+    file: ../secrets/db_root_pass.txt
+  db_user_pass:
+    file: ../secrets/db_user_pass.txt
+  wp_admin_pass:
+    file: ../secrets/wp_admin_pass.txt
+  wp_user_pass:
+    file: ../secrets/wp_user_pass.txt
