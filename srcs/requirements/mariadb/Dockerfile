@@ -10,11 +10,11 @@ RUN mkdir -p /var/run/mysql && chown -R mysql:mysql /var/run/mysql
 RUN rm -f /etc/my.cnf.d/mariadb-server.cnf
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY ./tools/first.sh /usr/local/bin/first.sh
+COPY ./tools/mariadb.sh /usr/local/bin/mariadb.sh
 COPY ./tools/db_init.sql /usr/local/bin/db_init.sql
 
-RUN chmod +x /usr/local/bin/first.sh
+RUN chmod +x /usr/local/bin/mariadb.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["/usr/local/bin/first.sh"]
+ENTRYPOINT ["/usr/local/bin/mariadb.sh"]
