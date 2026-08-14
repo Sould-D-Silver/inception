@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+export DB_ROOT_PASSWORD=$(cat /run/secrets/db_root_pass)
+export DB_USER_PASSWORD=$(cat /run/secrets/db_user_pass)
+
+
 mkdir -p /run/mysqld
 chown -R mysql:mysql /var/lib/mysql /run/mysqld
 
