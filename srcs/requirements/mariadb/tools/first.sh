@@ -21,4 +21,4 @@ echo "arquivo de inicialização processado"
 
 echo "iniciando o servidor"
 exec mariadbd --user=mysql --datadir=/var/lib/mysql \
-    --init-file=/usr/local/bin/db_init_processed.sql --console
+    --init-file=/usr/local/bin/db_init_processed.sql
