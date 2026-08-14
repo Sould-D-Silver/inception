@@ -41,7 +41,7 @@ clean:
 	docker compose -f srcs/docker-compose.yml  down --remove-orphans --volumes 
 
 remove:
-	sudo rm -rf /home/sjoao/data
+	sudo rm -rf /home/sjoao/data/mariadb_data/* /home/sjoao/data/wordpress_data/* 
 
 fclean: clean remove
 	docker system prune -f
