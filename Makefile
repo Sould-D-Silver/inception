@@ -9,6 +9,9 @@ make_dir:
 	mkdir -p /home/sjoao/data/mariadb_data
 	mkdir -p /home/sjoao/data/wordpress_data
 
+build: make_dir
+	@docker compose -f srcs/docker-compose.yml  build
+
 up:
 	@docker compose -f srcs/docker-compose.yml  up -d
 
@@ -19,6 +22,7 @@ help:
 	@echo "make build_and_up_with_detach - Build and run the containers in detached mode"
 	@echo "make up - Run the containers in detached mode"
 	@echo "make down - Stop and remove the containers"
+	@echo "make build - Build the images for the containers"
 	@echo "make logs - View logs of the containers"
 	@echo "make ps - List the running containers"
 	@echo "make restart - Restart the containers"
