@@ -1,11 +1,6 @@
 #!/bin/sh
 set -e
 
-echo "$MYSQL_ROOT_PASSWORD"
-echo "$MYSQL_DATABASE"
-echo "$MYSQL_USER"
-echo "$MYSQL_PASSWORD"
-
 mkdir -p /run/mysqld
 chown -R mysql:mysql /var/lib/mysql /run/mysqld
 
