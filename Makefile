@@ -18,6 +18,8 @@ up:
 down:
 	@docker compose -f srcs/docker-compose.yml  down
 
+dup: down up
+
 help:
 	@echo "make build_and_up_with_detach - Build and run the containers in detached mode"
 	@echo "make up - Run the containers in detached mode"
