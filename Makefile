@@ -50,7 +50,9 @@ clean:
 	@docker compose -f srcs/docker-compose.yml  down --remove-orphans --volumes 
 
 remove_images:
+ifneq ($(shell docker images -q),)
 	@docker rmi -f $(shell docker images -q)
+endif
 
 remove:
 	sudo rm -rf /home/sjoao/data/mariadb_data/* /home/sjoao/data/wordpress_data/* 
