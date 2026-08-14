@@ -5,7 +5,7 @@ RUN apk update && apk add --no-cache gettext mariadb mariadb-client
 
 RUN rm -rf /var/cache/apk/* /var/lib/mysql
 
-RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld
+RUN mkdir -p /var/run/mysql && chown -R mysql:mysql /var/run/mysql
 
 
 

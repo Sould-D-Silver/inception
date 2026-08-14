@@ -1,9 +1,5 @@
 # Simple nginx Dockerfile
-FROM debian:bookworm
+FROM alpine:3.23.5
 
-RUN apt-get update && apt-get install -y \
-    nginx \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk update && apk add --no-cache nginx openssl
 
-COPY index.html /usr/share/nginx/html/
-EXPOSE 80

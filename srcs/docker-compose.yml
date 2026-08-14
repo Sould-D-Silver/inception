@@ -16,20 +16,20 @@ services:
     networks:
       - inception
 
-  wordpress:
-    image: wordpress:inception
-    build: ./requirements/wordpress
-    container_name: wordpress
-    env_file:
-      - .env
-    ports:
-      - "5555:80"
-    depends_on:
-      - mariadb
-    volumes:
-      - wordpress_data:/var/www/html
-    networks:
-      - inception
+ # wordpress:
+ #   image: wordpress:inception
+ #   build: ./requirements/wordpress
+ #   container_name: wordpress
+ #   env_file:
+ #     - .env
+ #   ports:
+ #     - "5555:80"
+ #   depends_on:
+ #     - mariadb
+ #   volumes:
+ #     - wordpress_data:/var/www/html
+ #   networks:
+ #     - inception
 
 volumes:
   mariadb_data:
