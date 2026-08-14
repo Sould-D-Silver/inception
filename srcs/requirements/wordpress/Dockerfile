@@ -36,6 +36,8 @@ RUN curl -fsSL -o /usr/local/bin/wp \
 #     tar -xzf /tmp/wordpress.tar.gz -C /var/www/html --strip-components=1 && \
 #     rm /tmp/wordpress.tar.gz
 
+COPY ./conf/limit.ini /etc/php84/conf.d/99-wp-cli.ini
+
 COPY ./tools/inicial.sh /usr/local/bin/inicial.sh
 RUN chmod +x /usr/local/bin/inicial.sh
 
