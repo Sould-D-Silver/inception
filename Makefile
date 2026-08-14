@@ -30,6 +30,7 @@ help:
 	@echo "make restart - Restart the containers"
 	@echo "make clean - Stop and remove containers, networks, volumes, and images created by 'up'"
 	@echo "make remove - Remove data directories for mariadb and wordpress"
+	@echo "make remove_images - Remove all Docker images"
 	@echo "make fclean - Clean up everything including data directories and prune Docker system"
 	@echo "make re - Rebuild and run the containers after cleaning up"
 
@@ -48,10 +49,13 @@ logs:
 clean:
 	@docker compose -f srcs/docker-compose.yml  down --remove-orphans --volumes 
 
+remove_images:
+	@docker rmi -f $(shell docker images -q)
+
 remove:
 	sudo rm -rf /home/sjoao/data/mariadb_data/* /home/sjoao/data/wordpress_data/* 
 
-fclean: clean remove
+fclean: clean remove remove_images
 	docker system prune -f
 
 re: fclean 	build_and_up_with_detach
