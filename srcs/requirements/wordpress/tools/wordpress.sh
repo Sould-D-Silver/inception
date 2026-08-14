@@ -2,6 +2,10 @@
 
 set -e 
 
+export DB_USER_PASSWORD=$(cat /run/secrets/db_user_pass)
+export WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_pass)
+export WP_USER_PASSWD=$(cat /run/secrets/wp_user_pass)
+
 wait_for_db() {
     echo "aguardando o banco de dados..."
     until mysqladmin ping -h "mariadb" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" --silent >/dev/null 2>&1; do
@@ -27,7 +31,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
     wp config create \
         --dbname="$MYSQL_DATABASE" \
         --dbuser="$MYSQL_USER" \
-        --dbpass="$MYSQL_PASSWORD" \
+        --dbpass="$DB_USER_PASSWORD" \
         --dbhost="$DB_HOST" \
         --allow-root
 
