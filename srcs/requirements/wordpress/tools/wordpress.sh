@@ -8,7 +8,7 @@ export WP_USER_PASSWD=$(cat /run/secrets/wp_user_pass)
 
 wait_for_db() {
     echo "aguardando o banco de dados..."
-    until mysqladmin ping -h "mariadb" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" --silent >/dev/null 2>&1; do
+    until mysqladmin ping -h "mariadb" -u"$MYSQL_USER" -p"$DB_USER_PASSWORD" --silent >/dev/null 2>&1; do
         sleep 1
     done
     echo "banco de dados disponível"
