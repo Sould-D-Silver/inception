@@ -6,8 +6,8 @@ build_and_up_with_detach: make_dir
 	$(BUILD)
 
 make_dir:
-	mkdir -p /home/sjoao/data/mariadb_data
-	mkdir -p /home/sjoao/data/wordpress_data
+	mkdir -p /home/$(USER)/data/mariadb_data
+	mkdir -p /home/$(USER)/data/wordpress_data
 
 build: make_dir
 	@docker compose -f srcs/docker-compose.yml  build
@@ -54,8 +54,11 @@ ifneq ($(shell docker images -q),)
 	@docker rmi -f $(shell docker images -q)
 endif
 
+remove_volumes:
+	@docker volume rm $(shell docker volume ls -q)
+
 remove:
-	sudo rm -rf /home/sjoao/data/mariadb_data/* /home/sjoao/data/wordpress_data/* 
+	sudo rm -rf /home/$(USER)/data/mariadb_data/* /home/$(USER)/data/wordpress_data/* 
 
 fclean: clean remove remove_images
 	docker system prune -f
