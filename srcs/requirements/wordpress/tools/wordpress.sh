@@ -55,10 +55,17 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --user_pass="$WP_USER_PASSWD" \
         --allow-root
 
+    chown -R nobody:nobody /var/www/html
+
+    echo "iniciando o servidor"
+
+    exec php-fpm84 -F
 else
     echo "wordpress já está baixado e configurado" 
+    wait_for_db
+
+    echo "iniciando o servidor com bd ja existente"
+
+    exec php-fpm84 -F
 fi
 
-echo "iniciando o servidor"
-
-exec php-fpm84 -F
